@@ -28,7 +28,7 @@
 }
 
 .noura-store .noura-card .noura-card-art {
-  background: color-mix(in srgb, var(--card-accent) 12%, #f4f1ec);
+  background: #f4f1ec;
 }
 
 .noura-store .noura-card .noura-tag,
@@ -51,4 +51,56 @@
 
 .noura-store .noura-card .noura-card-foot {
   border-top-color: color-mix(in srgb, var(--card-accent) 24%, var(--line));
+}
+
+.noura-store .noura-card.is-switch {
+  cursor: pointer;
+}
+
+.noura-switch-colors {
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid color-mix(in srgb, var(--card-accent) 16%, var(--line));
+}
+
+.noura-switch-colors-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--card-accent);
+  font-size: 11px;
+}
+
+.noura-switch-colors-hint {
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+
+.noura-color-options {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 11px;
+}
+
+.noura-color-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+
+.noura-color-option i {
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid rgba(22, 22, 22, .2);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45);
+}
+
+.noura-card.is-expanded {
+  box-shadow: 0 15px 35px color-mix(in srgb, var(--card-accent) 16%, rgba(24, 24, 24, .09));
 }
