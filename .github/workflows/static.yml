@@ -34,23 +34,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Noura Smart Site Only
+      - name: Build Noura Smart Site
         env:
           PORT: 5000
+          BASE_PATH: /
           NODE_ENV: production
         run: |
-          pnpm --filter noura-smart-site run build || npx vite build artifacts/noura-smart-site --outDir dist_final
+          pnpm --filter noura-smart-site run build
 
       - name: Bundle Build
         run: |
           mkdir -p public_deploy
-          if [ -d "artifacts/noura-smart-site/dist" ]; then
-            cp -r artifacts/noura-smart-site/dist/* public_deploy/
-          elif [ -d "dist_final" ]; then
-            cp -r dist_final/* public_deploy/
-          elif [ -d "dist" ]; then
-            cp -r dist/* public_deploy/
-          fi
+          cp -r artifacts/noura-smart-site/dist/* public_deploy/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
