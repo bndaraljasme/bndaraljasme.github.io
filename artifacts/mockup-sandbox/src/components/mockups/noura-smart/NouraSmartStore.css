@@ -104,3 +104,20 @@
 .noura-card.is-expanded {
   box-shadow: 0 15px 35px color-mix(in srgb, var(--card-accent) 16%, rgba(24, 24, 24, .09));
 }
+
+.noura-contact-links {
+  display: inline-flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  direction: ltr;
+}
+
+.noura-contact-links a {
+  color: #dcebe2;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.noura-contact-links a:hover {
+  color: #e7c89e;
+}
