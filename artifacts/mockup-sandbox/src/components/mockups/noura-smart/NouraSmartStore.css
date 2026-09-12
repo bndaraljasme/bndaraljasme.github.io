@@ -1,0 +1,54 @@
+.noura-store {
+  filter: none;
+  --ink: #161616;
+  --ink-soft: #656565;
+  --paper: #f4f1ec;
+  --surface: #fffdfa;
+  --line: #ded9d0;
+  --teal: #16716e;
+  --teal-dark: #104d4b;
+  --coral: #d56f5d;
+  --sand: #cda86e;
+}
+
+.noura-store .noura-card {
+  --card-accent: var(--teal);
+}
+
+.noura-store .noura-card.tone-coral {
+  --card-accent: #d56f5d;
+}
+
+.noura-store .noura-card.tone-gold {
+  --card-accent: #b48743;
+}
+
+.noura-store .noura-card.tone-slate {
+  --card-accent: #475569;
+}
+
+.noura-store .noura-card .noura-card-art {
+  background: color-mix(in srgb, var(--card-accent) 12%, #f4f1ec);
+}
+
+.noura-store .noura-card .noura-tag,
+.noura-store .noura-card .noura-card-kicker,
+.noura-store .noura-card .noura-detail {
+  color: var(--card-accent);
+}
+
+.noura-store .noura-card .noura-tag {
+  background: color-mix(in srgb, var(--card-accent) 12%, #fffdfa);
+}
+
+.noura-store .noura-card .noura-more {
+  color: var(--card-accent);
+}
+
+.noura-store .noura-card .noura-specs span {
+  background: color-mix(in srgb, var(--card-accent) 9%, #fffdfa);
+}
+
+.noura-store .noura-card .noura-card-foot {
+  border-top-color: color-mix(in srgb, var(--card-accent) 24%, var(--line));
+}

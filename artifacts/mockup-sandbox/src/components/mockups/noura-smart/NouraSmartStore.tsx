@@ -1,18 +1,22 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, ChevronDown, ChevronUp, Cpu, Filter, Home, Menu, Radio, Search, ShieldCheck, SlidersHorizontal, X, Zap } from "lucide-react";
 import "./_group.css";
+import "./NouraSmartStore.css";
 
 type Category = "الكل" | "الشاشات" | "المفاتيح" | "الحساسات";
-type Product = { id:number; name:string; category:Exclude<Category,"الكل">; tag:string; image:string; kind:"screen"|"switch"|"sensor"; specs:string[]; note:string };
+type Product = { id:number; name:string; category:Exclude<Category,"الكل">; tag:string; image:string; kind:"screen"|"switch"|"sensor"; specs:string[]; note:string; accent:"teal"|"coral"|"gold"|"slate" };
 
 const products:Product[] = [
-  { id:1, name:"شاشة تحكم مركزية 5 بوصة", category:"الشاشات", tag:"تحكم مركزي", kind:"screen", image:"/__mockup/images/noura-smart-tpp05.png", specs:["شاشة لمس","بوابة Zigbee مدمجة","تعمل مع Tuya و Smart Life","تحكم كامل بالمنزل"], note:"شاشة صغيرة تجمع أجهزة البيت في مكان واحد." },
-  { id:2, name:"شاشة تحكم مركزية 8 بوصة", category:"الشاشات", tag:"تجربة متعددة", kind:"screen", image:"/__mockup/images/noura-smart-tpa08.png", specs:["لمس وأزرار وصوت","بوابة Bluetooth و Zigbee","تحكم عبر التطبيق","Alexa مدمج"], note:"تحكم مرن يناسب كل غرفة وكل طريقة استخدام." },
-  { id:3, name:"شاشة تحكم مركزية 10 بوصة", category:"الشاشات", tag:"تجربة موسعة", kind:"screen", image:"/__mockup/images/noura-smart-tpa10.png", specs:["شاشة لمس كبيرة","كاميرا مدمجة","مكالمات فيديو","RS485 و USB Type‑C"], note:"مركز تحكم واضح للبيوت التي تحتاج حضوراً أكبر." },
-  { id:4, name:"سويتش لمس ذكي — 4 أزرار", category:"المفاتيح", tag:"زجاج أسود", kind:"switch", image:"/__mockup/images/noura-smart-dme214.png", specs:["Zigbee 3.0","زجاج مقعر","إطار معدني أسود","L+N Wire · EU Standard"], note:"لمسة واحدة لإضاءة أكثر هدوءاً وأناقة." },
-  { id:5, name:"سويتش لمس ذكي — 3 أزرار", category:"المفاتيح", tag:"زجاج أسود", kind:"switch", image:"/__mockup/images/noura-smart-dme213.png", specs:["Zigbee 3.0","زجاج مقعر","إطار معدني أسود","Tuya و Smart Life"], note:"تصميم بسيط بثلاثة مشاهد جاهزة ليومك." },
-  { id:6, name:"سويتش ستارة ذكي", category:"المفاتيح", tag:"تحكم بالستارة", kind:"switch", image:"/__mockup/images/noura-smart-dme291.png", specs:["Zigbee 3.0","زر فتح وإغلاق وإيقاف","إطار معدني أسود","تحكم عبر التطبيق"], note:"تحكم ناعم بالضوء والخصوصية من نفس مكانه." },
-  { id:7, name:"حساس حركة ذكي", category:"الحساسات", tag:"استشعار ذكي", kind:"sensor", image:"/__mockup/images/noura-smart-motion.png", specs:["Zigbee","PIR + PC L+N","Tuya و Smart Life","للاستخدام الداخلي"], note:"يرصد الحركة بهدوء ليجعل الإضاءة والاستجابة أذكى." },
+  { id:1, name:"شاشة تحكم مركزية 5 بوصة", category:"الشاشات", tag:"تحكم مركزي", kind:"screen", image:"/__mockup/images/noura-smart-tpp05.png", specs:["شاشة لمس","بوابة Zigbee مدمجة","تعمل مع Tuya و Smart Life","تحكم كامل بالمنزل"], note:"شاشة صغيرة تجمع أجهزة البيت في مكان واحد.", accent:"teal" },
+  { id:2, name:"شاشة تحكم مركزية 8 بوصة", category:"الشاشات", tag:"تجربة متعددة", kind:"screen", image:"/__mockup/images/noura-smart-tpa08.png", specs:["لمس وأزرار وصوت","بوابة Bluetooth و Zigbee","تحكم عبر التطبيق","Alexa مدمج"], note:"تحكم مرن يناسب كل غرفة وكل طريقة استخدام.", accent:"gold" },
+  { id:3, name:"شاشة تحكم مركزية 10 بوصة", category:"الشاشات", tag:"تجربة موسعة", kind:"screen", image:"/__mockup/images/noura-smart-tpa10.png", specs:["شاشة لمس كبيرة","كاميرا مدمجة","مكالمات فيديو","RS485 و USB Type‑C"], note:"مركز تحكم واضح للبيوت التي تحتاج حضوراً أكبر.", accent:"slate" },
+  { id:4, name:"سويتش لمس ذكي — 4 أزرار", category:"المفاتيح", tag:"زجاج أسود", kind:"switch", image:"/__mockup/images/noura-smart-dme214.png", specs:["Zigbee 3.0","زجاج مقعر","إطار معدني أسود","L+N Wire · EU Standard"], note:"لمسة واحدة لإضاءة أكثر هدوءاً وأناقة.", accent:"slate" },
+  { id:5, name:"سويتش لمس ذكي — 3 أزرار", category:"المفاتيح", tag:"زجاج أسود", kind:"switch", image:"/__mockup/images/noura-smart-dme213.png", specs:["Zigbee 3.0","زجاج مقعر","إطار معدني أسود","Tuya و Smart Life"], note:"تصميم بسيط بثلاثة مشاهد جاهزة ليومك.", accent:"teal" },
+  { id:6, name:"سويتش لمس ذكي — زرين", category:"المفاتيح", tag:"تحكم مزدوج", kind:"switch", image:"/__mockup/images/noura-smart-dme213.png", specs:["Zigbee 3.0","زجاج مقعر","زرّان مستقلان","Tuya و Smart Life"], note:"تحكم مزدوج في مساحة أنظف، مع مشهدين قريبين من يدك.", accent:"coral" },
+  { id:7, name:"سويتش لمس ذكي — زر واحد", category:"المفاتيح", tag:"تحكم بسيط", kind:"switch", image:"/__mockup/images/noura-smart-dme214.png", specs:["Zigbee 3.0","زجاج مقعر","زر واحد مستقل","إطار معدني أنيق"], note:"حل هادئ ومباشر للممرات وغرف النوم.", accent:"gold" },
+  { id:8, name:"سويتش دايمر ذكي", category:"المفاتيح", tag:"تعتيم الإضاءة", kind:"switch", image:"/__mockup/images/noura-smart-dme291.png", specs:["Zigbee 3.0","رفع وخفض شدة الإضاءة","زر تشغيل وإيقاف","تحكم عبر التطبيق"], note:"اضبط إضاءة المكان على مزاجك بدل تشغيلها أو إطفائها فقط.", accent:"coral" },
+  { id:9, name:"سويتش ستارة ذكي", category:"المفاتيح", tag:"تحكم بالستارة", kind:"switch", image:"/__mockup/images/noura-smart-dme291.png", specs:["Zigbee 3.0","زر فتح وإغلاق وإيقاف","إطار معدني أسود","تحكم عبر التطبيق"], note:"تحكم ناعم بالضوء والخصوصية من نفس مكانه.", accent:"slate" },
+  { id:10, name:"حساس حركة ذكي", category:"الحساسات", tag:"استشعار ذكي", kind:"sensor", image:"/__mockup/images/noura-smart-motion.png", specs:["Zigbee","PIR + PC L+N","Tuya و Smart Life","للاستخدام الداخلي"], note:"يرصد الحركة بهدوء ليجعل الإضاءة والاستجابة أذكى.", accent:"teal" },
 ];
 
 const categoryMeta:Record<Category,{icon:typeof Home; label:string}> = {
@@ -28,7 +32,7 @@ function ProductVisual({product}:{product:Product}) {
 }
 
 function ProductCard({product,onOpen}:{product:Product;onOpen:(p:Product)=>void}) {
-  return <article className="noura-card noura-rise">
+  return <article className={`noura-card noura-rise tone-${product.accent}`}>
     <div className="noura-card-art"><span className="noura-tag">{product.tag}</span><button className="noura-more" aria-label="عرض التفاصيل" onClick={()=>onOpen(product)}><ArrowLeft size={17}/></button><ProductVisual product={product}/></div>
     <div className="noura-card-body"><div className="noura-card-kicker">{product.category}<span>•</span><span className="noura-mono">NOURA {String(product.id).padStart(2,"0")}</span></div><h3>{product.name}</h3><p>{product.note}</p><div className="noura-specs">{product.specs.slice(0,3).map(s=><span key={s}>{s}</span>)}</div><div className="noura-card-foot"><span className="noura-spec-label">المواصفات والتفاصيل</span><button onClick={()=>onOpen(product)} className="noura-detail">عرض التفاصيل <ArrowLeft size={15}/></button></div></div>
   </article>;
