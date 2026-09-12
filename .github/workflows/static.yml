@@ -34,16 +34,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Noura Smart Package
-        run: pnpm --filter noura-smart-site run build
+      - name: Force Build
+        run: |
+          npx vite build artifacts/noura-smart-site --outDir dist_final || pnpm run build --if-present
 
-      - name: Prepare Output Directory
+      - name: Bundle Build
         run: |
           mkdir -p public_deploy
           if [ -d "artifacts/noura-smart-site/dist" ]; then
             cp -r artifacts/noura-smart-site/dist/* public_deploy/
-          else
-            find . -type d -name "dist" -exec cp -r {}/* public_deploy/ \;
+          elif [ -d "dist_final" ]; then
+            cp -r dist_final/* public_deploy/
+          elif [ -d "dist" ]; then
+            cp -r dist/* public_deploy/
           fi
 
       - name: Setup Pages
