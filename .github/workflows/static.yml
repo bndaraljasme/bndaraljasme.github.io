@@ -37,13 +37,20 @@ jobs:
       - name: Build project
         run: pnpm --filter . build || pnpm run build --if-present
 
+      - name: Prepare build output
+        run: |
+          mkdir -p public_deploy
+          if [ -d "dist" ]; then cp -r dist/* public_deploy/; fi
+          if [ -d "artifacts/noura-smart-site/dist" ]; then cp -r artifacts/noura-smart-site/dist/* public_deploy/; fi
+          if [ -d "artifacts/mockup-sandbox/dist" ]; then cp -r artifacts/mockup-sandbox/dist/* public_deploy/; fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './public_deploy'
 
       - name: Deploy to GitHub Pages
         id: deployment
