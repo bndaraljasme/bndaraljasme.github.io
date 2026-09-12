@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --ink: #183b3a;
+  --ink-deep: #102e2d;
+  --muted: #6d7c78;
+  --paper: #f4efe6;
+  --paper-light: #fbf8f2;
+  --surface: #fffaf2;
+  --line: #ded6c9;
+  --teal: #19716b;
+  --teal-deep: #0f4d4a;
+  --coral: #d77761;
+  --gold: #bd914e;
+  --sage: #cbdcd0;
+  --shadow: 0 22px 55px rgba(20, 55, 52, .1);
+  --font-sans: 'IBM Plex Sans Arabic', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #d9d3c8;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+
+.noura-page {
+  min-height: 100dvh;
+  direction: rtl;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 8%, rgba(215, 119, 97, .14), transparent 24rem),
+    radial-gradient(circle at 90% 38%, rgba(25, 113, 107, .1), transparent 26rem),
+    var(--paper);
+  position: relative;
+}
+.noura-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  z-index: 100;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.75'/%3E%3C/svg%3E");
+}
+.noura-shell { width: min(100%, 1440px); margin: 0 auto; }
+.noura-wrap { width: min(100% - 48px, 1220px); margin: 0 auto; }
+.noura-mono { font-family: var(--font-mono); direction: ltr; display: inline-block; }
+
+.noura-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(244, 239, 230, .84);
+  border-bottom: 1px solid rgba(222, 214, 201, .85);
+  backdrop-filter: blur(18px);
+}
+.noura-nav {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+}
+.noura-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.noura-logo img { width: 39px; height: 30px; object-fit: contain; filter: brightness(0) saturate(100%) invert(25%) sepia(21%) saturate(1043%) hue-rotate(132deg) brightness(91%); }
+.noura-logo b { display: block; font-size: 18px; line-height: 1; }
+.noura-logo small { display: block; margin-top: 4px; color: var(--teal); direction: ltr; letter-spacing: 1.3px; font: 8px var(--font-mono); }
+.noura-nav nav { display: flex; align-items: center; gap: 28px; margin-inline-start: auto; }
+.noura-nav nav a { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .2s ease; }
+.noura-nav nav a:hover { color: var(--teal); }
+.noura-nav-actions { display: flex; align-items: center; gap: 11px; }
+.noura-search {
+  width: 190px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 250, 242, .62);
+  color: var(--muted);
+}
+.noura-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
+.noura-search input::placeholder { color: #9b9c94; }
+.noura-icon-btn, .noura-mobile-menu {
+  width: 37px; height: 37px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--ink);
+}
+.noura-mobile-menu { display: none; }
+
+.noura-hero {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr .14fr;
+  align-items: center;
+  gap: 20px;
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+.noura-hero-copy { position: relative; z-index: 2; }
+.noura-eyebrow { display: flex; align-items: center; gap: 9px; color: var(--teal); font-size: 12px; font-weight: 600; }
+.noura-eyebrow span { width: 23px; height: 2px; display: block; background: var(--coral); }
+.noura-hero h1 { margin: 18px 0 15px; color: var(--ink-deep); font-size: clamp(48px, 7vw, 84px); line-height: 1.04; letter-spacing: -3.4px; }
+.noura-hero h1 em, .noura-section-head h2 em, .noura-promise h2 em { color: var(--coral); font-style: normal; }
+.noura-hero p { max-width: 410px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.9; }
+.noura-hero-cta {
+  width: fit-content; margin-top: 28px; display: inline-flex; align-items: center; gap: 20px;
+  padding: 13px 16px 13px 20px; color: var(--surface); background: var(--teal);
+  border-radius: 8px; text-decoration: none; font-size: 13px; transition: transform .25s ease, background .25s ease;
+}
+.noura-hero-cta svg, .noura-detail svg { transition: transform .25s ease; }
+.noura-hero-cta:hover { transform: translateY(-3px); background: var(--teal-deep); }
+.noura-hero-cta:hover svg, .noura-detail:hover svg { transform: translateX(-4px); }
+.noura-hero-orb { width: min(100%, 430px); aspect-ratio: 1; position: relative; justify-self: center; }
+.noura-orbit { position: absolute; inset: 9%; border: 1px solid rgba(25, 113, 107, .22); border-radius: 50%; transform: rotate(-22deg); }
+.noura-orbit::after { content: ''; width: 11px; height: 11px; position: absolute; left: 17%; top: 14%; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 8px rgba(215, 119, 97, .12); }
+.noura-orbit.orbit-b { inset: 20%; transform: rotate(59deg); border-color: rgba(189, 145, 78, .32); }
+.noura-orbit.orbit-b::after { left: auto; right: 6%; top: auto; bottom: 25%; width: 8px; height: 8px; background: var(--gold); }
+.noura-orb-inner {
+  position: absolute; inset: 16%; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 34% 25%, #e1ede3, #aecbc0 60%, #8db5a7);
+  box-shadow: inset -20px -22px 45px rgba(15, 77, 74, .18), 0 24px 50px rgba(25, 93, 83, .16);
+}
+.noura-orb-house { width: 88px; height: 88px; display: grid; place-items: center; color: var(--teal-deep); border: 1px solid rgba(15, 77, 74, .2); border-radius: 50%; background: rgba(255, 250, 242, .42); }
+.orb-label { position: absolute; padding: 6px 10px; border: 1px solid rgba(255, 250, 242, .7); border-radius: 20px; background: rgba(255, 250, 242, .62); color: var(--teal-deep); box-shadow: 0 9px 24px rgba(25, 75, 67, .08); font-size: 11px; white-space: nowrap; }
+.orb-one { top: 18%; right: -1%; }.orb-two { bottom: 18%; left: -2%; }.orb-three { bottom: 4%; right: 28%; }
+.noura-hero-aside { height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; color: var(--gold); }
+.noura-vertical { writing-mode: vertical-rl; transform: rotate(180deg); font: 9px var(--font-mono); letter-spacing: 1.5px; }
+
+.noura-strip { background: var(--teal-deep); color: #dcebe2; }
+.noura-strip-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.noura-strip span { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; }
+.noura-strip svg { color: #d9b37e; }
+
+.noura-products { padding-top: 104px; padding-bottom: 120px; scroll-margin-top: 75px; }
+.noura-section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 33px; }
+.noura-section-head h2 { margin: 15px 0 0; color: var(--ink-deep); font-size: clamp(32px, 4.4vw, 54px); line-height: 1.15; letter-spacing: -1.8px; }
+.noura-section-head p { max-width: 255px; margin: 0 0 8px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.noura-filter-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+.noura-categories { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.noura-categories::-webkit-scrollbar { display: none; }
+.noura-categories button, .noura-filter { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); border-radius: 30px; padding: 9px 13px; background: transparent; color: var(--muted); font-size: 11px; transition: color .2s ease, background .2s ease, transform .2s ease; }
+.noura-categories button:hover, .noura-filter:hover { transform: translateY(-2px); color: var(--teal); border-color: rgba(25, 113, 107, .3); }
+.noura-categories button.active { background: var(--teal); border-color: var(--teal); color: var(--surface); }
+.noura-count { padding-inline-start: 2px; color: currentColor; font: 9px var(--font-mono); opacity: .65; direction: ltr; }
+.noura-filter { border-radius: 8px; color: var(--teal); white-space: nowrap; }
+.noura-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.noura-card {
+  --card-accent: var(--teal);
+  min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+  transition: transform .3s ease, box-shadow .3s ease; animation: noura-rise .6s both;
+}
+.noura-card:nth-child(2n) { animation-delay: .06s; }.noura-card:nth-child(3n) { animation-delay: .12s; }
+.noura-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+.tone-coral { --card-accent: var(--coral); }.tone-gold { --card-accent: var(--gold); }.tone-slate { --card-accent: #526663; }
+.noura-card-art { height: 220px; position: relative; display: grid; place-items: center; overflow: hidden; background: #eee7dc; }
+.noura-card-art::before { content: ''; width: 180px; height: 180px; position: absolute; border-radius: 50%; background: color-mix(in srgb, var(--card-accent) 22%, var(--surface)); }
+.noura-card-art > .noura-visual { position: absolute; inset: 0; background: transparent; }
+.noura-product-photo { width: 90%; height: 90%; position: relative; z-index: 1; object-fit: contain; mix-blend-mode: multiply; transition: transform .4s ease; }
+.noura-card:hover .noura-product-photo { transform: scale(1.06); }
+.noura-tag { position: absolute; top: 12px; right: 12px; z-index: 2; padding: 5px 8px; border-radius: 18px; background: color-mix(in srgb, var(--card-accent) 12%, var(--surface)); color: var(--card-accent); font-size: 10px; }
+.noura-more { width: 31px; height: 31px; position: absolute; top: 10px; left: 10px; z-index: 2; display: grid; place-items: center; border: 1px solid rgba(222, 214, 201, .8); border-radius: 50%; background: rgba(255, 250, 242, .83); color: var(--card-accent); }
+.noura-favorite { top: 48px; color: var(--muted); }.noura-favorite.is-saved { color: var(--coral); }
+.noura-card-body { padding: 16px 16px 14px; }
+.noura-card-kicker { display: flex; align-items: center; gap: 7px; color: var(--card-accent); font-size: 10px; }
+.noura-card-kicker span { color: var(--muted); }.noura-card-kicker .noura-mono { color: var(--gold); font-size: 9px; }
+.noura-card h3 { min-height: 45px; margin: 9px 0 6px; color: var(--ink-deep); font-size: 15px; line-height: 1.45; }
+.noura-card p { min-height: 39px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.noura-specs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.noura-specs span { padding: 5px 7px; border-radius: 5px; background: color-mix(in srgb, var(--card-accent) 9%, var(--surface)); color: var(--muted); font-size: 9px; }
+.noura-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 15px; padding-top: 12px; border-top: 1px solid color-mix(in srgb, var(--card-accent) 21%, var(--line)); }
+.noura-spec-label { color: var(--muted); font-size: 9px; }
+.noura-detail { display: inline-flex; align-items: center; gap: 5px; border: 0; padding: 0; background: transparent; color: var(--card-accent); font-size: 11px; }
+.noura-switch-colors { margin-top: 14px; padding-top: 11px; border-top: 1px solid color-mix(in srgb, var(--card-accent) 16%, var(--line)); }.noura-colors-toggle { display: inline-flex; align-items: center; gap: 5px; border: 0; padding: 0; background: transparent; color: var(--card-accent); font-size: 10px; }.noura-colors-toggle svg { transition: transform .2s ease; }.noura-colors-toggle svg.rotate { transform: rotate(180deg); }.noura-color-options { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 10px; }.noura-color-option { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 9px; }.noura-color-option i { width: 16px; height: 16px; display: inline-block; border: 1px solid rgba(22, 22, 22, .2); border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45); }
+.noura-empty { grid-column: 1 / -1; padding: 54px 20px; border: 1px dashed var(--line); border-radius: 14px; text-align: center; color: var(--muted); }
+.noura-empty svg { color: var(--coral); }.noura-empty h3 { margin: 10px 0 5px; color: var(--ink); font-size: 16px; }.noura-empty p { margin: 0 0 18px; font-size: 12px; }.noura-empty button { border: 0; border-radius: 7px; padding: 10px 14px; background: var(--teal); color: var(--surface); font-size: 11px; }
+
+.noura-promise { padding: 102px 0 108px; background: var(--teal-deep); color: #dbe9df; }
+.noura-promise-grid { display: grid; grid-template-columns: 1.1fr 1fr .5fr; gap: 50px; align-items: center; }
+.noura-promise .noura-eyebrow { color: #d0b17b; }.noura-promise h2 { margin: 16px 0 0; font-size: clamp(34px, 4.5vw, 55px); line-height: 1.2; color: var(--surface); letter-spacing: -1.8px; }.noura-promise h2 em { color: #e1a18e; }
+.noura-promise-copy p { margin: 0 0 20px; color: #b8cec3; font-size: 17px; line-height: 2; }.noura-promise-copy .noura-mono { color: #d4ad72; font-size: 10px; }
+.noura-promise-stamp { width: 126px; height: 126px; display: grid; place-content: center; justify-self: end; border: 1px solid rgba(214, 178, 118, .6); border-radius: 50%; color: #d4b173; text-align: center; font-size: 12px; line-height: 1.5; transform: rotate(-11deg); }.noura-promise-stamp b { font-size: 17px; }
+
+.noura-contact { padding: 80px 0; background: var(--paper-light); }
+.noura-contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }.noura-contact h2 { margin: 14px 0 8px; color: var(--ink-deep); font-size: clamp(30px, 4vw, 47px); line-height: 1.2; }.noura-contact p { margin: 0; color: var(--muted); font-size: 13px; }.noura-contact-numbers { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 9px; direction: ltr; }.noura-contact-numbers a { display: inline-flex; align-items: center; gap: 7px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 8px; color: var(--teal); text-decoration: none; font: 12px var(--font-mono); transition: background .2s ease, border .2s ease, transform .2s ease; }.noura-contact-numbers a:hover { transform: translateY(-2px); border-color: var(--teal); background: #e8f0e8; }
+.noura-footer { padding: 28px 0 34px; color: #c6d9ce; background: var(--ink-deep); }.noura-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 25px; border-bottom: 1px solid rgba(219, 233, 223, .14); }.noura-footer .noura-logo { color: var(--surface); }.noura-footer .noura-logo img { filter: brightness(0) saturate(100%) invert(89%) sepia(9%) saturate(330%) hue-rotate(82deg) brightness(102%); }.noura-footer .noura-logo small { color: #ccad75; }.noura-footer-top p { margin: 0; color: #b7cabd; font-size: 12px; }.noura-back { display: inline-flex; align-items: center; gap: 6px; color: #dfbc82; text-decoration: none; font-size: 11px; }.noura-footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; color: #94afa2; font-size: 10px; }.noura-contact-links { display: inline-flex; gap: 14px; flex-wrap: wrap; direction: ltr; }.noura-contact-links a { color: #d7e5db; text-decoration: none; transition: color .2s ease; }.noura-contact-links a:hover { color: #e0b77a; }
+
+.noura-modal-backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 24px; background: rgba(15, 53, 50, .5); backdrop-filter: blur(6px); animation: noura-fade .22s ease both; }.noura-modal { width: min(100%, 820px); max-height: min(90dvh, 700px); display: grid; grid-template-columns: .9fr 1.1fr; overflow: auto; border-radius: 18px; background: var(--surface); box-shadow: 0 30px 90px rgba(9, 40, 38, .28); animation: noura-pop .3s ease both; }.noura-modal > .noura-visual { min-height: 420px; }.noura-modal .noura-visual-grid { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(25,113,107,.08), transparent 60%); }.noura-modal .noura-product-photo { width: 86%; height: 76%; }.noura-visual { position: relative; display: grid; place-items: center; overflow: hidden; background: #eee7dc; }.noura-visual::before { content: ''; width: 270px; height: 270px; position: absolute; border-radius: 50%; background: #d4e2d7; }.noura-visual-code { position: absolute; bottom: 17px; left: 19px; color: var(--teal); font: 9px var(--font-mono); direction: ltr; }.noura-modal-content { position: relative; padding: 53px 40px 38px; }.noura-modal-close { position: absolute; top: 17px; left: 18px; width: 35px; height: 35px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--paper-light); color: var(--ink); }.noura-modal h2 { margin: 12px 0 9px; color: var(--ink-deep); font-size: 29px; line-height: 1.35; }.noura-modal-content > p { margin: 0 0 25px; color: var(--muted); font-size: 14px; line-height: 1.9; }.noura-modal-price { padding-top: 17px; border-top: 1px solid var(--line); color: var(--teal); font-size: 12px; font-weight: 600; }.noura-detail-list { display: grid; gap: 11px; margin-top: 15px; }.noura-detail-list div { display: flex; align-items: baseline; gap: 11px; color: var(--ink); font-size: 12px; }.noura-detail-list .noura-mono { color: var(--gold); font-size: 10px; }.noura-modal-note { margin-top: 28px; padding: 12px 14px; border-right: 2px solid var(--coral); background: #f5eee5; color: var(--muted); font-size: 11px; line-height: 1.8; }.noura-modal-contact { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 17px; padding: 12px 14px; border: 0; border-radius: 8px; background: var(--teal); color: var(--surface); font-size: 12px; transition: background .2s ease, transform .2s ease; }.noura-modal-contact:hover { background: var(--teal-deep); transform: translateY(-2px); }.noura-phone-icon { display: inline-grid; place-items: center; width: 17px; height: 17px; border: 1px solid currentColor; border-radius: 50%; font-size: 11px; }
+
+@keyframes noura-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes noura-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes noura-pop { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 980px) {
+  .noura-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .noura-hero { grid-template-columns: 1fr 1fr; }.noura-hero-aside { display: none; }
+  .noura-promise-grid { grid-template-columns: 1fr 1fr; }.noura-promise-stamp { grid-column: 1 / -1; justify-self: start; }
+}
+@media (max-width: 700px) {
+  .noura-wrap { width: min(100% - 34px, 560px); }
+  .noura-nav { height: 66px; gap: 12px; }.noura-mobile-menu { display: grid; order: 2; }.noura-nav .noura-logo { order: 1; margin-inline-end: auto; }.noura-nav-actions { order: 3; }.noura-nav-actions .noura-search { display: none; }
+  .noura-nav nav { position: absolute; top: 66px; right: 17px; left: 17px; display: none; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,250,242,.96); box-shadow: var(--shadow); }.noura-nav nav.is-open { display: grid; gap: 0; }.noura-nav nav a { padding: 12px; border-bottom: 1px solid var(--line); }.noura-nav nav a:last-child { border: 0; }
+  .noura-hero { min-height: auto; grid-template-columns: 1fr; gap: 24px; padding-top: 52px; padding-bottom: 65px; }.noura-hero h1 { font-size: clamp(48px, 15vw, 74px); }.noura-hero p { font-size: 14px; }.noura-hero-orb { width: min(86vw, 350px); margin: 14px auto 0; }.noura-strip-inner { overflow-x: auto; justify-content: flex-start; padding-top: 17px; padding-bottom: 17px; scrollbar-width: none; }.noura-strip-inner::-webkit-scrollbar { display: none; }.noura-strip span { flex: 0 0 auto; }
+  .noura-products { padding-top: 74px; padding-bottom: 78px; }.noura-section-head { display: block; }.noura-section-head p { margin-top: 12px; }.noura-filter-row { display: block; }.noura-categories { margin-bottom: 12px; }.noura-filter { width: 100%; justify-content: center; }.noura-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }.noura-card-art { height: 150px; }.noura-card-body { padding: 12px; }.noura-card h3 { min-height: 43px; font-size: 13px; }.noura-card p { min-height: 52px; font-size: 10px; }.noura-specs span:nth-child(n+3) { display: none; }.noura-spec-label { display: none; }.noura-card-foot { justify-content: flex-end; }.noura-promise { padding: 75px 0; }.noura-promise-grid { display: block; }.noura-promise-copy { margin-top: 30px; }.noura-promise-copy p { font-size: 15px; }.noura-promise-stamp { margin-top: 32px; }
+  .noura-contact { padding: 66px 0; }.noura-contact-inner { display: block; }.noura-contact-numbers { justify-content: flex-start; margin-top: 24px; }.noura-footer-top, .noura-footer-bottom { display: block; }.noura-footer-top p { margin: 20px 0; }.noura-footer-bottom > span { display: block; margin-bottom: 13px; }
+  .noura-modal-backdrop { padding: 0; align-items: end; }.noura-modal { width: 100%; max-height: 92dvh; grid-template-columns: 1fr; border-radius: 18px 18px 0 0; }.noura-modal > .noura-visual { min-height: 235px; }.noura-modal .noura-visual::before { width: 190px; height: 190px; }.noura-modal-content { padding: 38px 22px 28px; }.noura-modal h2 { font-size: 23px; }.noura-modal-content > p { font-size: 12px; }.noura-modal-note { margin-top: 22px; }
+}
+@media (max-width: 390px) { .noura-grid { grid-template-columns: 1fr; }.noura-card-art { height: 210px; }.noura-card h3 { min-height: 0; }.noura-card p { min-height: 0; }.noura-specs span:nth-child(n+3) { display: inline-block; } }

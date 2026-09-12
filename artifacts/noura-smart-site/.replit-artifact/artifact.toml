@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Noura Smart Kuwait"
+description = "A polished Arabic product catalog for Noura Smart Kuwait, showcasing smart-home screens, switches, sensors, and accessories with responsive browsing, search, filters, and product details."
+version = "1.0.0"
+id = "artifacts/noura-smart-site"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25392
+
+[services.development]
+run = "pnpm --filter @workspace/noura-smart-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/noura-smart-site", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/noura-smart-site/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25392"
+BASE_PATH = "/"
