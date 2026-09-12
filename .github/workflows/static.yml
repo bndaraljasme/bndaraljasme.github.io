@@ -43,7 +43,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './dist/public'
+          path-if-not-found: 'warn'
+
+      - name: Upload fallback artifact if needed
+        if: failure()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
