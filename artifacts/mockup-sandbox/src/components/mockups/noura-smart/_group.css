@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 .noura-store {
-  --ink: #183b3f;
-  --ink-soft: #557074;
-  --paper: #f5f2eb;
-  --surface: #fffdf8;
-  --line: #dfe6df;
-  --teal: #1b6e6a;
-  --teal-dark: #124b4b;
-  --coral: #e8755f;
-  --sand: #e7c89e;
+  --ink: #111111;
+  --ink-soft: #626262;
+  --paper: #f5f5f5;
+  --surface: #ffffff;
+  --line: #dddddd;
+  --teal: #111111;
+  --teal-dark: #000000;
+  --coral: #333333;
+  --sand: #bdbdbd;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
+  filter: grayscale(1);
   background:
-    radial-gradient(circle at 8% 12%, rgba(231,200,158,.24), transparent 28rem),
-    radial-gradient(circle at 96% 24%, rgba(27,110,106,.10), transparent 30rem),
+    radial-gradient(circle at 8% 12%, rgba(0,0,0,.04), transparent 28rem),
+    radial-gradient(circle at 96% 24%, rgba(0,0,0,.06), transparent 30rem),
     var(--paper);
   color: var(--ink);
 }
