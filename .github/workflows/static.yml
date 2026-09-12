@@ -34,15 +34,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Noura Smart Site directly
-        run: |
-          cd artifacts/noura-smart-site
-          pnpm run build
+      - name: Build Noura Smart Package
+        run: pnpm --filter noura-smart-site run build
 
-      - name: Prepare Deployment Directory
+      - name: Prepare Output Directory
         run: |
           mkdir -p public_deploy
-          cp -r artifacts/noura-smart-site/dist/* public_deploy/
+          if [ -d "artifacts/noura-smart-site/dist" ]; then
+            cp -r artifacts/noura-smart-site/dist/* public_deploy/
+          else
+            find . -type d -name "dist" -exec cp -r {}/* public_deploy/ \;
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
